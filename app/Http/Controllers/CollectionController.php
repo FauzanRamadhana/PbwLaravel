@@ -51,6 +51,10 @@ class CollectionController extends Controller
 
         return redirect(RouteServiceProvider::COLLECTIONS);
     }
+    public function show(Collection $collection)
+    {
+        return view('koleksi.infoKoleksi', ['collection' => $collection]);
+    }
 }
 // Nama:  Fauzan Ramadhana Sadikin
 // Nim:   6706220054
