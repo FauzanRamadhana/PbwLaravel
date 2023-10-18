@@ -1,67 +1,62 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Rincian Pengguna') }}
-        </h2>
-    </x-slot>
-    // Nama: Fauzan Ramadhana Sadikin
-    // Nim: 6706220054
-    // Kelas: D3IF 4603
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <table class="min-w-full table-auto">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Nama</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Email</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Nomor Telepon</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Alamat</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Tanggal Lahir</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Agama</th>
-                                <th
-                                    class="px-6 py-3 bg-gray-200 text-left text-xl leading-4 font-medium text-gray-700 uppercase tracking-wider">
-                                    Jenis Kelamin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $user->fullname }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ $user->email }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    {{ $user->phoneNumber    }}</td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    {{ $user->address    }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    {{ $user->birthDate    }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    {{ $user->agama    }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    {{ $user->gender    }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1 class="my-4" style="font-weight: bold;">Rincian Pengguna</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th class="text-start">Full Name</th>
+                    <td>{{ $user->fullname }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">User Name</th>
+                    <td>{{ $user->username }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Email</th>
+                    <td>{{ $user->email }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Phone Number</th>
+                    <td>{{ $user->phoneNumber }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Address</th>
+                    <td>{{ $user->address }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Birth Date</th>
+                    <td>{{ $user->birthDate }}</td>
+                </tr>
+                @php
+                $gender = '';
+                switch ($user->gender) {
+                case 1:
+                $gender = 'Pria';
+                break;
+                case 2:
+                $gender = 'Wanita';
+                break;
+                }
+                @endphp
+
+                <tr>
+                    <th class="text-start">Agama</th>
+                    <td>{{ $user->agama }}</td>
+                </tr>
+                <tr>
+                    <th class="text-start">Jenis Kelamin</th>
+                    <td>{{ $gender }}</td>
+                </tr>
+            </table>
+            <a href="{{ route('user') }}" class="btn btn-primary">Back</a>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection
+// Nama: Fauzan Ramadhana Sadikin
+// Nim: 6706220054
+// Kelas: D3IF 4603

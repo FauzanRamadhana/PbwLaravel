@@ -8,7 +8,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
@@ -38,8 +37,8 @@ class RegisteredUserController extends Controller
             'address' => ['required', 'string', 'max:1000'],
             'birthDate' => ['required', 'date'],
             'phoneNumber' => ['required', 'string', 'max:20'],
-            'agama' => ['required','string', 'max:20'],
-            'gender' => ['required', 'integer','max:4']
+            'agama' => ['required', 'string', 'max:20'],
+            'gender' => ['required', 'integer', 'max:4']
         ]);
 
         $user = User::create([
@@ -53,6 +52,7 @@ class RegisteredUserController extends Controller
             'agama' => $request->agama,
             'gender' => $request->gender
         ]);
+
 
         event(new Registered($user));
 

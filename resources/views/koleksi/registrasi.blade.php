@@ -1,9 +1,6 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('koleksiStore') }}">
         @csrf
-        // Nama: Fauzan Ramadhana Sadikin
-        // Nim: 6706220054
-        // Kelas: D3IF 4603
         <!-- Nama Koleksi -->
         <div class="mt-4">
             <x-input-label for="namaKoleksi" :value="__('Nama Koleksi')" />
@@ -12,34 +9,19 @@
             <x-input-error :messages="$errors->get('namaKoleksi')" class="mt-2" />
         </div>
 
-        <!-- Jenis Koleksi -->
         <div class="mt-4">
-            <x-input-label for="jenisKoleksi" :value="__('Jenis Koleksi')" />
-            <div class="flex items-center">
-                <input class=" mr-2 leading-tight" type="radio" id="buku" name="jenisKoleksi" value="1"
-                    {{ old('jenisKoleksi')=== '1' ? 'checked' : ''}} required autofocus />
-                <label class="text-white ml-2" for="buku">
-                    Buku
-                </label>
-            </div>
-
-            <div class="flex items-center">
-                <input class=" mr-2 leading-tight" type="radio" id="majalah" name="jenisKoleksi" value="2"
-                    {{ old('jenisKoleksi')=== '2' ? 'checked' : ''}} required autofocus />
-                <label class="text-white ml-2" for="majalah">
-                    Majalah
-                </label>
-            </div>
-
-            <div class="flex items-center">
-                <input class=" mr-2 leading-tight" type="radio" id="cakramDigital" name="jenisKoleksi" value="3"
-                    {{ old('jenisKoleksi')=== '3' ? 'checked' : ''}} required autofocus />
-                <label class="text-white ml-2" for="cakramDigital">
-                    Cakram Digital
-                </label>
-            </div>
-            <x-input-error :messages=" $errors->get('jenisKoleksi')" class="mt-2" />
+            <x-input-label :value="__('Jenis Koleksi')" for="jenisKoleksi" />
+            <select name="jenisKoleksi" class="form-select" required>
+                <option value="1" {{ old('jenisKoleksi') === '1' ? 'selected' : '' }}>Buku</option>
+                <option value="2" {{ old('jenisKoleksi') === '2' ? 'selected' : '' }}>Majalah</option>
+                <option value="3" {{ old('jenisKoleksi') === '3' ? 'selected' : '' }}>Cakram Digital</option>
+            </select>
+            <x-input-error :messages="$errors->get('jenisKoleksi')" class="mt-2" />
         </div>
+
+
+
+
 
         <!-- Jumlah Koleksi -->
         <div class="mt-4">
@@ -73,10 +55,19 @@
             <x-input-error :messages="$errors->get('tahunTerbit')" class="mt-2" />
         </div>
 
+
         <div class="flex items-center justify-end mt-4">
+            <!-- button reset -->
+            <x-primary-button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4 ml-4x"
+                type="reset">
+                Reset
+            </x-primary-button>
             <x-primary-button class="ml-4">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
     </form>
 </x-guest-layout>
+// Nama: Fauzan Ramadhana Sadikin
+// Nim: 6706220054
+// Kelas: D3IF 4603

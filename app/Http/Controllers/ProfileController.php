@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UsersDataTable;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -9,14 +10,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-// Nama:  Fauzan Ramadhana Sadikin
-// Nim:   6706220054
-// Kelas: D3IF 4603
+
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+
+    public function index(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('user.daftarPengguna');
+    }
+
+    public function show(User $user)
+    {
+        // dd($user);
+        return view(('user.infoPengguna'), compact('user'));
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -59,16 +70,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    }
-
-    // Display list pengguna
-    public function index(){
-        $users = User::all();
-        return view('user.daftarPengguna',compact(var_name:'users'));
-    }
-
-    // Display particular user
-    public function show(User $user) {
-        return view('user.infoPengguna', ['user' => $user]);
     }
 }

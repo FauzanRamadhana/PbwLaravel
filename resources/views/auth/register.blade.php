@@ -1,9 +1,7 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        // Nama: Fauzan Ramadhana Sadikin
-        // Nim: 6706220054
-        // Kelas: D3IF 4603
+
         <!-- Username -->
         <div class="mt-4">
             <x-input-label for="username" :value="__('Username')" />
@@ -86,7 +84,7 @@
             <div class="flex items-center">
                 <input class=" mr-2 leading-tight" type="radio" id="pria" name="gender" value="1"
                     {{ old('gender')=== '1' ? 'checked' : ''}} required autofocus />
-                <label class="text-white ml-2" for="pria">
+                <label class="ml-0" for="pria">
                     Pria
                 </label>
             </div>
@@ -94,7 +92,7 @@
             <div class="flex items-center">
                 <input class=" mr-2 leading-tight" type="radio" id="wanita" name="gender" value="2"
                     {{ old('gender')=== '2' ? 'checked' : ''}} required autofocus />
-                <label class="text-white ml-2" for="wanita">
+                <label class="ml-0" for="wanita">
                     Wanita
                 </label>
             </div>
@@ -106,6 +104,11 @@
                 href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
+            <!-- button reset -->
+            <x-primary-button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4"
+                type="reset">
+                Reset
+            </x-primary-button>
 
             <x-primary-button class="ml-4">
                 {{ __('Register') }}
@@ -113,3 +116,6 @@
         </div>
     </form>
 </x-guest-layout>
+// Nama: Fauzan Ramadhana Sadikin
+// Nim: 6706220054
+// Kelas: D3IF 4603

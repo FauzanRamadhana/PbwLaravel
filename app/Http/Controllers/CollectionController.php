@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\KoleksiDataTable;
 use App\Models\Collection;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,11 +14,9 @@ class CollectionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(KoleksiDataTable $dataTable)
     {
-        $collections = Collection::all();
-
-        return view('koleksi.daftarKoleksi', compact(var_name: 'collections'));
+        return $dataTable->render('koleksi.daftarKoleksi');
     }
 
     /**
@@ -51,11 +50,11 @@ class CollectionController extends Controller
 
         return redirect(RouteServiceProvider::COLLECTIONS);
     }
+    /**
+     * Display the specified resource.
+     */
     public function show(Collection $collection)
     {
         return view('koleksi.infoKoleksi', ['collection' => $collection]);
     }
 }
-// Nama:  Fauzan Ramadhana Sadikin
-// Nim:   6706220054
-// Kelas: D3IF 4603
