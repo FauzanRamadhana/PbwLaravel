@@ -2,59 +2,70 @@
 
 @section('content')
 <div class="container">
-    <h1 class="my-4" style="font-weight: bold;">Rincian Pengguna</h1>
+    <h1 class="my-4" style="font-weight: bold;">Edit Pengguna</h1>
 
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-striped">
-                <tr>
-                    <th class="text-start">Full Name</th>
-                    <td>{{ $user->fullname }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">User Name</th>
-                    <td>{{ $user->username }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Email</th>
-                    <td>{{ $user->email }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Phone Number</th>
-                    <td>{{ $user->phoneNumber }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Address</th>
-                    <td>{{ $user->address }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Birth Date</th>
-                    <td>{{ $user->birthDate }}</td>
-                </tr>
-                @php
-                $gender = '';
-                switch ($user->gender) {
-                case 1:
-                $gender = 'Pria';
-                break;
-                case 2:
-                $gender = 'Wanita';
-                break;
-                }
-                @endphp
+    <form method="POST" action="{{ route('userUpdate') }}">
+        @method('PUT')
+        @csrf
 
-                <tr>
-                    <th class="text-start">Agama</th>
-                    <td>{{ $user->agama }}</td>
-                </tr>
-                <tr>
-                    <th class="text-start">Jenis Kelamin</th>
-                    <td>{{ $gender }}</td>
-                </tr>
-            </table>
-            <a href="{{ route('user') }}" class="btn btn-primary">Back</a>
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <input type="hidden" name="id" value="{{ $user->id }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" name="fullname" id="fullname" class="form-control" value="{{ $user->fullname }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">User Name:</label>
+                    <input type="text" name="username" id="username" class="form-control" value="{{ $user->username }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control"
+                        value="{{ $user->phoneNumber }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" id="address" class="form-control" value="{{ $user->address }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="agama">Agama:</label>
+                    <input type="text" name="agama" id="agama" class="form-control" value="{{ $user->agama }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Birth Date:</label>
+                    <input type="text" name="birthDate" id="birthDate" class="form-control"
+                        value="{{ $user->birthDate }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender" class="form-control">
+                        <option value="1" {{ $user->gender === 1 ? 'selected' : '' }}>Pria</option>
+                        <option value="2" {{ $user->gender === 2 ? 'selected' : '' }}>Wanita</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+
+                <div class="text-center mt-2">
+                    <button class="btn btn-primary">Update</button>
+                    <a href="{{ route('user') }}" class="btn btn-secondary">Back</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 @endsection
 // Nama: Fauzan Ramadhana Sadikin

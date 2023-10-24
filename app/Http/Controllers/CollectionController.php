@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CollectionController extends Controller
 {
@@ -55,6 +56,28 @@ class CollectionController extends Controller
      */
     public function show(Collection $collection)
     {
-        return view('koleksi.infoKoleksi', ['collection' => $collection]);
+        return view('koleksi.infoKoleksi', compact('collection'));
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'namaKoleksi' => 'required',
+            'jenisKoleksi' => 'required|in:1,2,3',
+            'jumlahKoleksi' => 'required|numeric',
+
+        ]);
+
+        DB::table('collections')->where('id', $request->id)->update(
+            [
+                'namaKoleksi' => $request->namaKoleksi,
+                'jenisKoleksi' => $request->jenisKoleksi,
+                'jumlahKoleksi' => $request->jumlahKoleksi
+            ]
+        );
+        return redirect()->route('koleksi')->with('success', 'Koleksi berhasil diperbarui.');
     }
 }
+// Nama:  Fauzan Ramadhana Sadikin
+// Nim:   6706220054
+// Kelas: D3IF 4603

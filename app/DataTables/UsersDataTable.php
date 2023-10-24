@@ -55,7 +55,7 @@ class UsersDataTable extends DataTable
             Column::make('email'),
             Column::make('phoneNumber'),
             Column::computed('action')
-                ->title('Action')
+                ->title('Edit')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

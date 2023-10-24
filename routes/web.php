@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,7 @@ Route::get('/dashboard', function () {
 Route::get('/user', [ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('user');
 
 // Route untuk show daftar pengguna
-Route::get('/userView/{user}', [ProfileController::class, 'show'])->middleware(['auth', 'verified'])->name('userView');
+Route::get('/userView/{user}', [UserController::class, 'show'])->middleware(['auth', 'verified'])->name('userView');
 
 // Route untuk daftar koleksi
 Route::get('/koleksi', [CollectionController::class, 'index'])->middleware(['auth', 'verified'])->name('koleksi');
@@ -42,6 +43,12 @@ Route::post('/koleksiStore', [CollectionController::class, 'store'])->middleware
 
 // Rpute untuk show koleksi
 Route::get('/koleksiView/{collection}', [CollectionController::class, 'show'])->middleware(['auth', 'verified'])->name('koleksiView');
+
+
+//Update data perubahan koleksi dan user
+Route::put('/koleksiUpdate', [CollectionController::class, 'update'])->name('koleksiUpdate');
+Route::put('/userUpdate', [UserController::class, 'update'])->name('userUpdate');
+
 
 
 Route::middleware('auth')->group(function () {
