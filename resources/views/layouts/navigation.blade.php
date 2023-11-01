@@ -37,6 +37,20 @@
                         {{ __('Daftar Koleksi') }}
                     </x-nav-link>
                 </div>
+
+                <!-- Tambah Transaksi -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('transaksiTambah')" :active="request()->routeIs('transakiTambah')">
+                        {{ __('Tambah Transaksi') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Daftar Transaksi -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('transaksi')" :active="request()->routeIs('transaksi')">
+                        {{ __('Daftar Transaksi') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

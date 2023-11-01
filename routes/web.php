@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DetailTransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,20 @@ Route::get('/koleksiView/{collection}', [CollectionController::class, 'show'])->
 Route::put('/koleksiUpdate', [CollectionController::class, 'update'])->name('koleksiUpdate');
 Route::put('/userUpdate', [UserController::class, 'update'])->name('userUpdate');
 
+//Route untuk list transaksi
+Route::get('/transaksi', [TransactionController::class, 'index'])->middleware(['auth', 'verified'])->name('transaksi');
+
+// Route untuk tambah transaksi
+Route::get('/transaksiTambah', [TransactionController::class, 'create'])->middleware(['auth', 'verified'])->name('transaksiTambah');
+
+// Route untuk simpan data transaksi
+Route::post('/transaksiStore', [TransactionController::class, 'store'])->middleware(['auth', 'verified'])->name('transaksiStore');
+
+// Rpute untuk show transaksi
+Route::get('/transaksiView/{transaction}', [TransactionController::class, 'show'])->middleware(['auth', 'verified'])->name('transaksiView');
+
+route::get('/detailTransactionKembalikan/{detailTransactionId}', [DetailTransactionController::class, 'detailTransactionKembalikan'])->name('detailTransactionKembali');
+Route::post('/detailTransactionUpdate', [DetailTransactionController::class, 'update'])->name('detailTransactionUpdate');
 
 
 Route::middleware('auth')->group(function () {
